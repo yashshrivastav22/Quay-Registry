@@ -226,6 +226,21 @@ Fill wizard values (S3 = MinIO, DB = Postgres, Redis, etc.), then download confi
 tar -xzvf ~/quay-config.tar.gz -C ~/quay-registry/quay/config --no-same-owner
 ls -la ~/quay-registry/quay/config
 ```
+## Edit Config file
+Comment this section in config.yaml:
+```bash
+vim quay/config/config.yaml
+```
+```
+DB_CONNECTION_ARGS:
+  keepalives: 0
+  keepalivescount: 0
+  keepalivesidle: 0
+  keepalivesinterval: 0
+  sslcompression: 0
+  tcpusertimeout: 0
+```
+
 ---
 ## ▶️ Run Quay in Normal Mode
 ```bash
