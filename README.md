@@ -157,14 +157,21 @@ Option 1: Using MinIO CLI (mc)
 ```bash
 NET=quay-registry_quay-net
 
-docker run --rm --network $NET minio/mc \
-  --insecure alias set quayminio https://quay-minio:${MINIO_S3_PORT} ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}
+# Create bucket
+docker run --rm --network "$NET" \
+  -e MC_HOST_quayminio="https://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@quay-minio:${MINIO_S3_PORT}" \
+  minio/mc:latest --insecure mb -p "quayminio/${MINIO_BUCKET}"
 
-docker run --rm --network $NET minio/mc \
-  --insecure mb -p quayminio/${MINIO_BUCKET}
+# List all buckets
+docker run --rm --network "$NET" \
+  -e MC_HOST_quayminio="https://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@quay-minio:${MINIO_S3_PORT}" \
+  minio/mc:latest --insecure ls quayminio
 
-docker run --rm --network $NET minio/mc \
-  --insecure ls quayminio
+# List objects inside the bucket
+docker run --rm --network "$NET" \
+  -e MC_HOST_quayminio="https://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@quay-minio:${MINIO_S3_PORT}" \
+  minio/mc:latest --insecure ls "quayminio/${MINIO_BUCKET}"
+
 ```
 
 Option 2: Using MinIO Console (Web UI)
