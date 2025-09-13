@@ -204,8 +204,22 @@ docker run --rm --name quay-config \
 Open in browser:
 👉 `http://<EC2-PUBLIC-IP>:8081`
 Login: `quayconfig / secret`
+![Alt text](./images/config_login.PNG)
+
+![Alt text](./images/config_page.PNG)
 
 Fill wizard values (S3 = MinIO, DB = Postgres, Redis, etc.), then download config tarball.
+1. Server Configuration & Database:
+![Alt text](./images/server_db_conf.PNG)
+
+2. Redis
+![Alt text](./images/redis_conf.PNG)
+
+3. Registry Storage:
+![Alt text](./images/registry_storage_setup.PNG)
+
+4. Click on `Validation Configuration Changes` and Download the tar file.
+![Alt text](./images/validation.PNG)
 ---
 ## 📦 Extract Config
 ```bash
@@ -227,6 +241,19 @@ docker run -d --name quay \
 ```
 Open Quay:
 👉 `http://<EC2-PUBLIC-IP>:8080`
+
+Login Page:
+
+![Alt text](./images/quay_registry_login_page.PNG)
+
+Create a user for Quay registry. Here, `username: quayadmin`, `email:<any_email>`, `password:<set_password>`,
+
+![Alt text](./images/registry_usercreate_quayadmin.PNG)
+
+Loggin with created user `quayadmin`:
+
+![Alt text](./images/loggedin_with_quayadmin.PNG)
+
 ---
 ## ✅ Health Checks
 ```bash
@@ -240,29 +267,52 @@ If Quay is running on HTTP (8080), you must allow Docker to treat it as an insec
 sudo mkdir -p /etc/docker
 cat <<EOF | sudo tee /etc/docker/daemon.json
 {
-  "insecure-registries": ["<EC2-PUBLIC-IP>:8080"]
+  "insecure-registries": ["<EC2-PRIVATE-IP>:8080"]
 }
 EOF
 
 sudo systemctl restart docker
 ```
+![Alt text](./images/insecure_registry_add.PNG)
+
 Then test:
-```bash
 # Login to Quay
-docker login <EC2-PUBLIC-IP>:8080
+Example: `docker login <EC2-PRIVATE-IP>:8080`
+```bash
+docker login 172.31.28.163:8080
+```
+
+![Alt text](./images/quay_registry_cli_loggedin.PNG)
 
 # Pull a sample image
-docker pull hello-world
+Example: `docker pull <sample_image>`
+```bash
+docker pull busybox
+```
 
 # Tag it for Quay
-docker tag hello-world <EC2-PUBLIC-IP>:8080/<youruser>/hello:latest
+Example: `docker image tag busybox:latest <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
+```bash
+docker image tag busybox:latest 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
+```
 
 # Push it to Quay
-docker push <EC2-PUBLIC-IP>:8080/<youruser>/hello:latest
+Example: `docker push <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
+```bash
+docker image push 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
+```
+
+![Alt text](./images/push_docker_image_to_quay.PNG)
 
 # Pull it back
-docker pull <EC2-PUBLIC-IP>:8080/<youruser>/hello:latest
+Example: `docker pull <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
+
+```bash
+docker image pull 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
 ```
+
+![Alt text](./images/pull_docker_image_from_quay.PNG)
+
 ---
 ## 📂 Final Layout
 ```kotline
