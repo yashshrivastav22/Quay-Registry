@@ -211,22 +211,22 @@ docker run --rm --name quay-config \
 Open in browser:
 👉 `http://<EC2-PUBLIC-IP>:8081`
 Login: `quayconfig / secret`
-![Config Login](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/config_login.PNG)
+[Config Login](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/config_login.PNG)
 
-![Config Page](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/config_page.PNG)
+![Config Page](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/config_page.PNG)
 
 Fill wizard values (S3 = MinIO, DB = Postgres, Redis, etc.), then download config tarball.
 1. Server Configuration & Database:
-![Server DB Conf](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/server_db_conf.PNG)
+![Server DB Conf](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/server_db_conf.PNG)
 
 2. Redis
-![Redis Conf](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/redis_conf.PNG)
+![Redis Conf](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/redis_conf.PNG)
 
 3. Registry Storage:
-![Registry Storage Setup](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/registry_storage_setup.PNG)
+![Registry Storage Setup](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/registry_storage_setup.PNG)
 
 4. Click on `Validation Configuration Changes` and Download the tar file.
-![Validation](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/validation.PNG)
+![Validation](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/validation.PNG)
 ---
 ## 📦 Extract Config
 ```bash
@@ -266,15 +266,15 @@ Open Quay:
 
 Login Page:
 
-![Quay Registry Login Page](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/quay_registry_login_page.PNG)
+![Quay Registry Login Page](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/quay_registry_login_page.PNG)
 
 Create a user for Quay registry. Here, `username: quayadmin`, `email:<any_email>`, `password:<set_password>`,
 
-![Registry User Create Quayadmin](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/registry_usercreate_quayadmin.PNG)
+![Registry User Create Quayadmin](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/registry_usercreate_quayadmin.PNG)
 
 Loggin with created user `quayadmin`:
 
-![Loggedin With Quayadmin](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/loggedin_with_quayadmin.PNG)
+![Loggedin With Quayadmin](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/loggedin_with_quayadmin.PNG)
 
 ---
 ## ✅ Health Checks
@@ -295,7 +295,7 @@ EOF
 
 sudo systemctl restart docker
 ```
-![Insecure Registry Add](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/insecure_registry_add.PNG)
+![Insecure Registry Add](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/insecure_registry_add.PNG)
 
 Then test:
 # Login to Quay
@@ -304,7 +304,7 @@ Example: `docker login <EC2-PRIVATE-IP>:8080`
 docker login 172.31.28.163:8080
 ```
 
-![Quay Registry CLI Loggedin](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/quay_registry_cli_loggedin.PNG)
+![Quay Registry CLI Loggedin](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/quay_registry_cli_loggedin.PNG)
 
 # Pull a sample image
 Example: `docker pull <sample_image>`
@@ -324,9 +324,9 @@ Example: `docker push <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
 docker image push 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
 ```
 
-![Push Docker Image To Quay](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/push_docker_image_to_quay.PNG)
+![Push Docker Image To Quay](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/push_docker_image_to_quay.PNG)
 
-![Pushed Busybox From CLI](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/pushed_busybox_from_cli.PNG)
+![Pushed Busybox From CLI](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/pushed_busybox_from_cli.PNG)
 
 # Pull it back
 Example: `docker pull <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
@@ -335,7 +335,7 @@ Example: `docker pull <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
 docker image pull 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
 ```
 
-![Pull Docker Image From Quay](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/pull_docker_image_from_quay.PNG)
+![Pull Docker Image From Quay](https://github.com/yashshrivastav22/Images/blob/main/Quay-Registry/pull_docker_image_from_quay.PNG)
 
 ---
 ## 📂 Final Layout
