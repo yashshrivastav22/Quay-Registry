@@ -211,22 +211,22 @@ docker run --rm --name quay-config \
 Open in browser:
 👉 `http://<EC2-PUBLIC-IP>:8081`
 Login: `quayconfig / secret`
-![Alt text](./images/config_login.PNG)
+![Config Login](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/config_login.PNG)
 
-![Alt text](./images/config_page.PNG)
+![Config Page](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/config_page.PNG)
 
 Fill wizard values (S3 = MinIO, DB = Postgres, Redis, etc.), then download config tarball.
 1. Server Configuration & Database:
-![Alt text](./images/server_db_conf.PNG)
+![Server DB Conf](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/server_db_conf.PNG)
 
 2. Redis
-![Alt text](./images/redis_conf.PNG)
+![Redis Conf](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/redis_conf.PNG)
 
 3. Registry Storage:
-![Alt text](./images/registry_storage_setup.PNG)
+![Registry Storage Setup](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/registry_storage_setup.PNG)
 
 4. Click on `Validation Configuration Changes` and Download the tar file.
-![Alt text](./images/validation.PNG)
+![Validation](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/validation.PNG)
 ---
 ## 📦 Extract Config
 ```bash
@@ -266,15 +266,15 @@ Open Quay:
 
 Login Page:
 
-![Alt text](./images/quay_registry_login_page.PNG)
+![Quay Registry Login Page](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/quay_registry_login_page.PNG)
 
 Create a user for Quay registry. Here, `username: quayadmin`, `email:<any_email>`, `password:<set_password>`,
 
-![Alt text](./images/registry_usercreate_quayadmin.PNG)
+![Registry User Create Quayadmin](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/registry_usercreate_quayadmin.PNG)
 
 Loggin with created user `quayadmin`:
 
-![Alt text](./images/loggedin_with_quayadmin.PNG)
+![Loggedin With Quayadmin](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/loggedin_with_quayadmin.PNG)
 
 ---
 ## ✅ Health Checks
@@ -295,7 +295,7 @@ EOF
 
 sudo systemctl restart docker
 ```
-![Alt text](./images/insecure_registry_add.PNG)
+![Insecure Registry Add](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/insecure_registry_add.PNG)
 
 Then test:
 # Login to Quay
@@ -304,7 +304,7 @@ Example: `docker login <EC2-PRIVATE-IP>:8080`
 docker login 172.31.28.163:8080
 ```
 
-![Alt text](./images/quay_registry_cli_loggedin.PNG)
+![Quay Registry CLI Loggedin](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/quay_registry_cli_loggedin.PNG)
 
 # Pull a sample image
 Example: `docker pull <sample_image>`
@@ -324,7 +324,9 @@ Example: `docker push <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
 docker image push 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
 ```
 
-![Alt text](./images/push_docker_image_to_quay.PNG)
+![Push Docker Image To Quay](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/push_docker_image_to_quay.PNG)
+
+![Pushed Busybox From CLI](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/pushed_busybox_from_cli.PNG)
 
 # Pull it back
 Example: `docker pull <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
@@ -333,7 +335,7 @@ Example: `docker pull <EC2-PRIVATE-IP>:8080/<youruser>/hello:latest`
 docker image pull 172.31.28.163:8080/quayadmin/testrepo/busybox:v1
 ```
 
-![Alt text](./images/pull_docker_image_from_quay.PNG)
+![Pull Docker Image From Quay](https://github.com/yashshrivastav22/Quay-Registry/blob/main/images/pull_docker_image_from_quay.PNG)
 
 ---
 ## 📂 Final Layout
